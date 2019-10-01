@@ -107,7 +107,7 @@ class ServiceResponseConverter(
             } else GsonConverterFactory.create(gSon).responseBodyConverter(type!!, annotations, retrofit)
         } catch (ignored: OutOfMemoryError) {
             null
-        }
+        } as Converter<ResponseBody, *>?
     }
 
     override fun requestBodyConverter(type: Type?, parameterAnnotations: Array<Annotation>,

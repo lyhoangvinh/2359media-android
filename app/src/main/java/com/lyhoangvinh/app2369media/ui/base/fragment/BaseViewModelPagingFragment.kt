@@ -93,7 +93,7 @@ abstract class BaseViewModelPagingFragment<B : ViewDataBinding,
         }
     }
 
-    fun doneRefresh() {
+    private fun doneRefresh() {
         updateScrollTop()
         if (refreshLayout != null) {
             refreshLayout.isRefreshing = false

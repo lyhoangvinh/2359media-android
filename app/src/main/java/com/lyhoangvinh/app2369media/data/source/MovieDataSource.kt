@@ -4,6 +4,7 @@ import android.os.Handler
 import android.text.TextUtils
 import android.util.Log
 import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import androidx.paging.DataSource
 import androidx.paging.PageKeyedDataSource
 import com.lyhoangvinh.app2369media.Constants
@@ -34,7 +35,7 @@ class MovieDataSource @Inject constructor(private val movieService: MovieService
         params: LoadInitialParams<Int>,
         callback: LoadInitialCallback<Int, Movie>
     ) {
-        callApi(page = 0, loadInitialCallback = callback)
+        callApi(page = 1, loadInitialCallback = callback)
     }
 
     override fun loadAfter(params: LoadParams<Int>, callback: LoadCallback<Int, Movie>) {
@@ -120,45 +121,24 @@ class MovieDataSource @Inject constructor(private val movieService: MovieService
     }
 
     private fun getResourceFollowable(page: Int) =
-        createResource(movieService.getMovies(page, Constants.KEY, page), null)
+        createResource(movieService.getMovies(500, Constants.KEY, page), null)
 
 
     @Singleton
-    class CollectionRxFactory @Inject constructor(
+    class MovieFactory @Inject constructor(
         private val movieService: MovieService
     ) :
         DataSource.Factory<Int, Movie>() {
-
-        private var isCurrentSource = false
-        private val sourceLiveData = SafeMutableLiveData<MovieDataSource>()
-        private lateinit var newSource: MovieDataSource
-
+        private val sourceLiveData = MutableLiveData<MovieDataSource>()
+        private var newSource: MovieDataSource? = MovieDataSource(movieService)
         fun invalidate() {
             sourceLiveData.value?.invalidate()
         }
-
-        fun stateLiveData(): LiveData<State> {
-            if (!isCurrentSource) {
-                newSource = MovieDataSource(movieService)
-                isCurrentSource = true
-            }
-            return if (sourceLiveData.value == null) {
-                newSource.getStateLiveData()
-            } else {
-                sourceLiveData.value?.getStateLiveData()!!
-            }
-        }
-
-        fun dispose() {
-            sourceLiveData.value?.dispose()
-        }
-
         override fun create(): DataSource<Int, Movie> {
-            if (isCurrentSource) {
-                newSource = MovieDataSource(movieService)
-            }
+            newSource = null
+            newSource = MovieDataSource(movieService)
             sourceLiveData.postValue(newSource)
-            return newSource
+            return newSource!!
         }
     }
 }

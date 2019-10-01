@@ -7,6 +7,6 @@ import retrofit2.http.Path
 import retrofit2.http.Query
 
 interface MovieService {
-    @GET("movie/{movie_id}/list")
+    @GET("movie/{movie_id}/lists")
     fun getMovies(@Path("movie_id") movie_id: Int, @Query("api_key") api_key: String, @Query("page") page: Int): Single<MovieResponse>
 }

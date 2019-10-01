@@ -1,13 +1,8 @@
 package com.lyhoangvinh.app2369media.ui.features
 
-import androidx.appcompat.app.AppCompatActivity
-import android.os.Bundle
-import com.lyhoangvinh.app2369media.R
+import com.lyhoangvinh.app2369media.ui.base.activity.BaseSingleFragmentActivity
+import com.lyhoangvinh.app2369media.ui.features.movie.MovieFragment
 
-class MainActivity : AppCompatActivity() {
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
-    }
+class MainActivity : BaseSingleFragmentActivity<MovieFragment>() {
+    override fun createFragment() = MovieFragment()
 }

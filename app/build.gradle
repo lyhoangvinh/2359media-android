@@ -22,6 +22,7 @@ android {
         debug {
             buildConfigField "String", "HOST", (project.findProperty("ENDPOINT") ?: "")
             buildConfigField "String", "HEADER_AUTH", "\"Authorization\""
+            buildConfigField "String", "IMAGE_URL", (project.findProperty("IMAGEURL") ?: "")
             buildConfigField "boolean", "ENABLE_LOGCAT", "true"
             buildConfigField "String", "API_KEY", (project.findProperty("APIKEY") ?: "")
             archivesBaseName = "2369Media-app-$defaultConfig.versionName($defaultConfig.versionCode)"
