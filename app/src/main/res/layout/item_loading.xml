@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <data>
+
+        <variable
+            name="isShow"
+            type="Boolean" />
+    </data>
+
+    <FrameLayout
+        android:visibility="@{isShow ? View.VISIBLE : View.GONE}"
+        android:padding="@dimen/padding_4dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <include layout="@layout/progress_dialog" />
+    </FrameLayout>
+
+</layout>
