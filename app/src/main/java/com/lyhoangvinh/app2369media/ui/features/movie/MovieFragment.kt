@@ -22,9 +22,4 @@ class MovieFragment :
     }
 
     override fun createLayoutManager(): RecyclerView.LayoutManager = GridLayoutManager(activity, 2)
-
-//    override fun onBackPressed(): Boolean {
-//        fragmentManager?.popBackStack()
-//        return true
-//    }
 }

@@ -44,6 +44,7 @@
             android:layout_toEndOf="@+id/imvBack"
             android:ellipsize="end"
             android:maxLines="1"
+            android:paddingStart="@dimen/padding_10dp"
             android:textColor="@android:color/white"
             android:textSize="@dimen/ts_16_sp"
             app:setStartCollapsingAnimation="@{titleToolBar}"
