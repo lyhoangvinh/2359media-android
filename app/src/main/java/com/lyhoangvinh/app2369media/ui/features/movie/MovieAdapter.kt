@@ -19,8 +19,6 @@ class MovieAdapter @Inject constructor(@ActivityContext context: Context, privat
     override fun createViewHolder(itemView: View) = VideoViewHolder(itemView)
     override fun onBindViewHolder(binding: ItemMovieBinding, dto: Movie, position: Int) {
         binding.dto = dto
-//        binding.tvPreview.setOnClickListener { navigatorHelper.navigateDetailActivity(dto.previewVideoUrl.toString()) }
-//        binding.lnlRootWallet.setOnClickListener { navigatorHelper.navigateDetailActivity(dto.embeddedUrl.toString()) }
     }
     class VideoViewHolder(itemView: View) : BaseViewHolder<ItemMovieBinding>(itemView)
     private object ItemCallBack : DiffUtil.ItemCallback<Movie>() {

@@ -49,11 +49,33 @@ fun ImageView.loadImage(url: String) {
         .into(this)
 }
 
-fun Activity.createDialog(): Dialog? {
+fun Activity.createProgressDialog(): Dialog? {
     val progressDialog = Dialog(this)
     progressDialog.let {
         it.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
         it.setContentView(R.layout.progress_dialog)
+        it.setCancelable(false)
+        it.setCanceledOnTouchOutside(false)
+        return it
+    }
+}
+
+fun Activity.createConnectionDialog(): Dialog? {
+    val progressDialog = Dialog(this)
+    progressDialog.let {
+        it.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+        it.setContentView(R.layout.view_error_connection)
+        it.setCancelable(false)
+        it.setCanceledOnTouchOutside(false)
+        return it
+    }
+}
+
+fun Fragment.createConnectionDialog(): Dialog? {
+    val progressDialog = Dialog(activity!!)
+    progressDialog.let {
+        it.window?.setBackgroundDrawable(ColorDrawable(Color.WHITE))
+        it.setContentView(R.layout.view_error_connection)
         it.setCancelable(false)
         it.setCanceledOnTouchOutside(false)
         return it

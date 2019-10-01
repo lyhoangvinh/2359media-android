@@ -26,7 +26,9 @@
             <include
                 layout="@layout/view_no_data"/>
 
-            <include layout="@layout/view_error_connection"/>
+            <include
+                android:visibility="gone"
+                layout="@layout/view_error_connection"/>
         </FrameLayout>
     </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 </layout>

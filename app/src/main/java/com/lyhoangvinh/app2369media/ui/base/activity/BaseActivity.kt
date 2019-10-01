@@ -6,7 +6,7 @@ import android.os.Bundle
 import androidx.annotation.IdRes
 import androidx.fragment.app.Fragment
 import com.lyhoangvinh.app2369media.ui.base.interfaces.UiRefreshable
-import com.lyhoangvinh.app2369media.utils.createDialog
+import com.lyhoangvinh.app2369media.utils.createProgressDialog
 import dagger.android.support.DaggerAppCompatActivity
 
 /**
@@ -31,7 +31,7 @@ abstract class BaseActivity : DaggerAppCompatActivity() {
         if (loading) {
             hideProgress()
             if (dialog == null) {
-                dialog = createDialog()
+                dialog = createProgressDialog()
             }
             dialog?.show()
         } else {
